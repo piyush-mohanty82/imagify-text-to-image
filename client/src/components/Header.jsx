@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {assets} from '../assets/assets'
 import { motion } from "motion/react"
+import { AppContext } from '../context/AppContext'
+import { useNavigate } from 'react-router-dom'
 const Header = () => {
+  const {user,setShowLogin} = useContext(AppContext);
+  const navigate = useNavigate();
+  const onClickHandler = () => {
+    if(user){
+      navigate('/result')
+    }else {
+      setShowLogin(true);
+    }
+  }
+
   return (
     <motion.div className='flex flex-col justify-center items-center text-center my-20'
     initial={{opacity:0.2,y:100}}
