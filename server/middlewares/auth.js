@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken";
 //find the user id from token and add it to the req.body so that we can use it in the controller functions
 const userAuth = async (req,res,next) => {
     const {token} = req.headers;
+    
+    
 
     if(!token) {
         return res.json({ success:false,message: "Not Authorized. Login Again" });
@@ -14,7 +16,8 @@ const userAuth = async (req,res,next) => {
         const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
 
         if(tokenDecode.id){
-            req.body.userId = tokenDecode.id;
+            // req.body.userId = tokenDecode.id;
+            req.user = tokenDecode;
         }else {
             return res.json({ success:false,message: "Not Authorized. Login Again" });
         }
