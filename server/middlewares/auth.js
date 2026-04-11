@@ -1,4 +1,7 @@
 import jwt from "jsonwebtoken";
+//Authentication middleware is a function that verifies the identity of a user before allowing access to protected API routes.
+
+//Auth middleware ensures that only authenticated users can access certain APIs by validating their token before executing the controller logic
 
 //find the user id from token and add it to the req.body so that we can use it in the controller functions
 const userAuth = async (req,res,next) => {
